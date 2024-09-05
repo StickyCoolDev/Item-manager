@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf2bejpoeud6c"]
+
+[ext_resource type="Theme" uid="uid://dchl66bosnupr" path="res://addons/item_manager/style/all_style.tres" id="1_iqcc4"]
+[ext_resource type="Script" path="res://addons/item_manager/scripts/item_manager_main.gd" id="1_pj157"]
+
+[node name="ItemManager" type="Control"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pj157")
+metadata/_edit_vertical_guides_ = [2.0]
+
+[node name="VBoxMain" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Add_new_item" type="Label" parent="VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Add new
+item"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="nameHBOX" type="HBoxContainer" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="name_of_item" type="Label" parent="VBoxMain/nameHBOX"]
+layout_mode = 2
+theme = ExtResource("1_iqcc4")
+text = "name of itme"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxMain/nameHBOX"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "name"
+alignment = 1
+
+[node name="typeHbox" type="HBoxContainer" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="item_type" type="Label" parent="VBoxMain/typeHbox"]
+layout_mode = 2
+theme = ExtResource("1_iqcc4")
+text = "item type"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxMain/typeHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "FOOD"
+
+[node name="AddItemButton" type="Button" parent="VBoxMain"]
+layout_mode = 2
+text = "add new item"
+
+[node name="Add_new_item_type" type="Label" parent="VBoxMain"]
+custom_minimum_size = Vector2(0.12, 0.165)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Add New Item Type"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Separator2" type="HSeparator" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="itemtypeHBOX" type="HBoxContainer" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="AddNewItemType" type="Label" parent="VBoxMain/itemtypeHBOX"]
+layout_mode = 2
+theme = ExtResource("1_iqcc4")
+theme_override_font_sizes/font_size = 12
+text = "name of item type"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxMain/itemtypeHBOX"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "item type name"
+alignment = 1
+
+[node name="add" type="Button" parent="VBoxMain/itemtypeHBOX"]
+layout_mode = 2
+text = "add"
+
+[node name="all_item" type="Label" parent="VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "All item's"
+horizontal_alignment = 1
+
+[node name="Separator3" type="HSeparator" parent="VBoxMain"]
+layout_mode = 2
+
+[node name="AllItemList" type="ItemList" parent="VBoxMain"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="VBoxMain/AddItemButton" to="." method="_on_add_item_button_pressed"]
+[connection signal="pressed" from="VBoxMain/itemtypeHBOX/add" to="." method="add_new_item_type_pressed"]
+[connection signal="item_clicked" from="VBoxMain/AllItemList" to="." method="_on_all_item_list_item_clicked"]
+[connection signal="timeout" from="Timer" to="." method="process"]
